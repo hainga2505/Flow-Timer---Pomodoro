@@ -33,8 +33,7 @@
 ## 🚀 Installation
 
 ### From the Chrome Web Store
-
-*(Coming Soon!)*
+https://chromewebstore.google.com/detail/flow-timer-pomodoro/lhjchnebampfjcbamemnhcbbieldilfj?authuser=0&hl=en
 
 ### From Source (for Developers)
 
