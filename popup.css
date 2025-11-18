@@ -1,0 +1,465 @@
+:root {
+  --bg-color: #f8f9fa;
+  --text-color: #343a40;
+  --border-color: #dee2e6;
+  --primary-btn-bg: #5a9a8c; /* Vintage green */
+  --primary-btn-hover-bg: #4a8a7c;
+  --danger-btn-bg: #bc776c; /* Muted vintage terracotta */
+  --danger-btn-hover-bg: #ac675c;
+  --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+  font-family: var(--font-family);
+  width: 320px;
+  padding: 16px;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin-bottom: 8px;
+}
+
+.header h1 {
+  font-size: 22px;
+  text-align: center;
+  color: var(--text-color);
+  margin: 0;
+  font-weight: 500;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* Timer Setup & Display */
+#setup-view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 10px 0;
+}
+
+.setup-description {
+  font-size: 14px;
+  color: #6c757d;
+  margin: 0 0 16px 0;
+}
+
+#timer-view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.clock-container {
+  position: relative;
+  width: 180px;
+  height: 180px;
+  margin: 10px auto 20px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.clock-container.is-transitioning {
+  opacity: 0;
+  transform: scale(0.9);
+}
+
+.clock-text {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.progress-ring {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.progress-ring__circle-bg {
+  stroke: var(--border-color);
+}
+
+.progress-ring__circle {
+  stroke: var(--primary-btn-bg);
+  stroke-linecap: round;
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+  transition: stroke-dashoffset 1s linear;
+}
+
+#session-title {
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0;
+  color: #6c757d;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+#time-remaining {
+  font-size: 48px;
+  font-family: var(--font-family);
+  font-weight: 600;
+  color: var(--text-color);
+  line-height: 1.1;
+  margin: 0;
+}
+
+.separator {
+  border: none;
+  border-top: 1px solid var(--border-color);
+  margin: 0;
+}
+
+#stats-view {
+  text-align: center;
+  font-size: 14px;
+  color: #6c757d;
+  background-color: #e9ecef;
+  padding: 12px;
+  border-radius: 8px;
+}
+
+#stats-view p {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.stats-icon {
+  font-size: 18px;
+  line-height: 1;
+}
+
+#stats-view #daily-count {
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--primary-btn-bg);
+}
+
+#stop-pomodoro-btn {
+  background-color: var(--danger-btn-bg);
+}
+
+#stop-pomodoro-btn:hover {
+  background-color: var(--danger-btn-hover-bg);
+}
+
+button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  background-color: var(--primary-btn-bg);
+  color: white;
+  font-weight: 600;
+  width: 100%;
+  transition: background-color 0.2s ease;
+}
+
+button:hover {
+  background-color: var(--primary-btn-hover-bg);
+}
+
+/* Site Management */
+input[type="text"] {
+  padding: 10px;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Default styling for lists (specifically for blocked sites now) */
+#blocked-sites-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  max-height: 120px;
+  overflow-y: auto;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+}
+
+/* Default styling for list items (e.g., blocked sites) */
+#blocked-sites-list li {
+  padding: 8px 12px;
+  background-color: #fff;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Default styling for buttons inside list items */
+#blocked-sites-list li button {
+  background-color: transparent;
+  padding: 5px;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+  transition: background-color 0.2s ease;
+}
+
+#blocked-sites-list li button svg {
+  stroke: var(--danger-btn-bg);
+  transition: stroke 0.2s ease;
+}
+
+#blocked-sites-list li button:hover {
+  background-color: #f1f3f5;
+}
+
+#blocked-sites-list li button:hover svg {
+  stroke: var(--danger-btn-hover-bg);
+}
+
+.header #open-options-btn {
+  position: absolute;
+  top: 50%;
+  right: -8px; /* Adjust position to align nicely */
+  transform: translateY(-50%);
+  background: none;
+  width: auto;
+  padding: 8px;
+  line-height: 0;
+}
+
+.header #open-options-btn svg {
+  width: 20px;
+  height: 20px;
+  stroke: #6c757d;
+  transition: stroke 0.2s ease;
+}
+
+.header #open-options-btn:hover svg {
+  stroke: var(--text-color);
+}
+
+/* --- Keyframe Animations for To-Do List --- */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+}
+
+/* --- To-Do List Professional Redesign --- */
+
+.todo-header h3 {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-color);
+  margin: 0 0 8px 0;
+  text-align: left;
+}
+
+.todo-add-container {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+#new-task-input {
+  flex-grow: 1;
+  border-right: none;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+#add-task-btn {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  background-color: var(--primary-btn-bg);
+  color: white;
+  border: none;
+  padding: 0 12px;
+  font-size: 20px;
+  line-height: 1;
+  width: auto; /* Override generic button width */
+  flex-shrink: 0;
+}
+
+#task-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 120px;
+  overflow-y: auto;
+}
+
+#task-list li {
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  background-color: #fff;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  margin-bottom: 6px;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease, opacity 0.3s ease, transform 0.3s ease;
+  justify-content: flex-start; /* Align items to the start */
+  animation: fadeInDown 0.3s ease-out;
+}
+
+#task-list li:last-child {
+  margin-bottom: 0;
+}
+
+#task-list li:hover {
+  background-color: #f8f9fa;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+}
+
+#task-list li.completed span {
+  text-decoration: line-through;
+  color: #888;
+}
+
+/* Make completed tasks less prominent */
+#task-list li.completed {
+  opacity: 0.7;
+}
+#task-list li.completed:hover {
+  opacity: 1;
+}
+
+#task-list li.empty-task-list {
+  justify-content: center;
+  color: #888;
+  font-style: italic;
+  background-color: transparent;
+  border: 1px dashed var(--border-color);
+  padding: 16px;
+  animation: none; /* Don't animate the empty state message */
+}
+
+#task-list li input[type="checkbox"] {
+  margin-right: 12px;
+  width: 18px;
+  height: 18px;
+  accent-color: var(--primary-btn-bg);
+  flex-shrink: 0;
+}
+
+#task-list li span {
+  flex-grow: 1;
+  word-break: break-word;
+  font-size: 14px;
+}
+
+#task-list li.dragging {
+  opacity: 0.4;
+  background: #e9ecef;
+  border-style: dashed;
+}
+
+/* Class for deletion animation */
+#task-list li.deleting {
+  animation: fadeOut 0.3s ease-out forwards;
+  /* 'forwards' keeps the final state of the animation */
+}
+
+/* Container for edit/delete buttons */
+.task-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px; /* Add some space between the buttons */
+  margin-left: auto; /* Push to the far right */
+}
+
+/* General button styling within the task list */
+#task-list li .task-actions button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 2px;
+  width: auto;
+  opacity: 0; /* Hide buttons by default */
+  transition: opacity 0.2s;
+  flex-shrink: 0;
+}
+
+/* Show buttons when hovering over the list item */
+#task-list li:hover .task-actions button {
+  opacity: 0.6;
+}
+
+#task-list li .task-actions button:hover {
+  opacity: 1;
+}
+
+/* Styling for the delete button's icon */
+#task-list li .task-actions button svg {
+  stroke: var(--danger-btn-bg);
+  vertical-align: middle;
+}
+
+/* Specific styling for the edit button's icon */
+#task-list li .task-actions .edit-btn svg {
+  stroke: #6c757d; /* A neutral gray for edit */
+}
+
+/* --- Edit Mode Styles --- */
+
+/* Hide the edit input by default */
+.edit-task-input {
+  display: none;
+  flex-grow: 1;
+  margin: -4px 8px -4px 0; /* Negative margin to fit nicely */
+  font-size: 14px;
+  padding: 4px 6px;
+}
+
+/* When a task is in edit mode... */
+#task-list li.editing span,
+#task-list li.editing .task-actions {
+  display: none; /* Hide the text span and action buttons */
+}
+
+#task-list li.editing input[type="checkbox"] {
+  display: none; /* Hide the checkbox */
+}
+
+#task-list li.editing .edit-task-input {
+  display: block; /* Show the edit input field */
+}

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Focus Mode</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Focus Mode</h1>
+      <button id="open-options-btn" title="Settings">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06-.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+      </button>
+    </div>
+
+    <div id="setup-view">
+      <p class="setup-description">Ready to focus? Start a new session.</p>
+      <button id="start-pomodoro-btn">Start Pomodoro</button>
+    </div>
+
+    <div id="timer-view" class="hidden">
+      <div class="clock-container">
+        <svg class="progress-ring" width="180" height="180">
+          <circle class="progress-ring__circle-bg" stroke-width="8" fill="transparent" r="82" cx="90" cy="90"/>
+          <circle class="progress-ring__circle" stroke-width="8" fill="transparent" r="82" cx="90" cy="90"/>
+        </svg>
+        <div class="clock-text">
+          <h2 id="session-title">Focusing...</h2>
+          <p id="time-remaining">--:--</p>
+        </div>
+      </div>
+      <button id="stop-pomodoro-btn">Stop Pomodoro</button>
+    </div>
+
+    <div id="stats-view">
+      <p><span class="stats-icon">🍅</span> Today's Pomodoros: <span id="daily-count">0</span></p>
+    </div>
+
+    <hr class="separator">
+
+    <div id="todo-section">
+      <div class="todo-header">
+        <h3>Today's Tasks</h3>
+      </div>
+      <div class="todo-add-container">
+        <input type="text" id="new-task-input" placeholder="Add a new task...">
+        <button id="add-task-btn" title="Add Task">+</button>
+      </div>
+      <ul id="task-list">
+        <!-- Tasks will be rendered here by JavaScript -->
+      </ul>
+    </div>
+
+    <hr class="separator">
+
+    <input type="text" id="new-site" placeholder="e.g., abc.com">
+    <button id="add-site">Add blocked websites</button>
+    <ul id="blocked-sites-list"></ul>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>

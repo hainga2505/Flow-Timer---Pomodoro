@@ -1,0 +1,264 @@
+:root {
+  --bg-color: #f8f9fa;
+  --card-bg-color: #ffffff;
+  --text-color: #343a40;
+  --border-color: #dee2e6;
+  --primary-btn-bg: #5a9a8c; /* Vintage green */
+  --primary-btn-hover-bg: #4a8a7c;
+  --danger-btn-bg: #bc776c; /* Muted vintage terracotta */
+  --danger-btn-hover-bg: #ac675c;
+  --success-color: #28a745;
+  --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: #e9ecef; /* Slightly darker background for contrast */
+  color: var(--text-color);
+  padding: 20px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+h1 {
+  font-size: 28px;
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: 500;
+  color: #495057;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.options-container {
+  background-color: var(--card-bg-color);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.setting {
+  margin-bottom: 0;
+  background-color: transparent;
+  padding: 10px 25px;
+  border-bottom: 1px solid #f1f3f5;
+}
+
+.options-container .setting:last-child {
+  border-bottom: none;
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+/* Style for main section titles (e.g., "Pomodoro Settings") to make them distinct */
+.setting > label {
+  font-size: 17px;
+  margin-bottom: 15px;
+}
+
+.setting-description {
+  font-size: 14px;
+  color: #6c757d;
+  margin-top: -5px;
+}
+
+select,
+input[type="text"],
+input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.site-add-container {
+  display: flex;
+  gap: 10px;
+}
+
+.site-add-container input[type="text"] {
+  flex-grow: 1;
+}
+
+/* Make Add Site and Add to Whitelist buttons the same size */
+#add-site,
+#add-whitelist-site-btn {
+  width: 150px; /* Adjust this value as needed */
+  box-sizing: border-box; /* Ensures padding and border are included in the width */
+}
+
+button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.2s ease;
+  color: white;
+  background-color: var(--primary-btn-bg);
+}
+
+button:hover {
+  background-color: var(--primary-btn-hover-bg);
+}
+
+#save-status {
+  color: var(--success-color);
+  font-weight: bold;
+  font-size: 14px;
+  opacity: 0;
+  transition: opacity 0.5s;
+  margin-top: 10px;
+  height: 1em;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin-top: 15px;
+  max-height: 220px;
+  overflow-y: auto;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+}
+
+li {
+  padding: 8px 15px;
+  background-color: #fff;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+li:last-child {
+  border-bottom: none;
+}
+
+li button {
+  background-color: transparent;
+  padding: 5px;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+  transition: background-color 0.2s ease;
+}
+
+.sound-select-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sound-select-container select {
+  flex-grow: 1;
+}
+
+#play-preview-btn {
+  padding: 0;
+  width: 42px;
+  height: 42px;
+  font-size: 16px;
+  line-height: 0;
+  flex-shrink: 0;
+  background-color: #e9ecef;
+  color: var(--text-color);
+}
+
+/* Chart container */
+.chart-container {
+  position: relative;
+  margin-top: 20px;
+  height: 250px;
+  width: 100%;
+}
+
+/* Stats section header */
+.stats-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: -5px;
+}
+
+.stats-header .setting-description {
+  margin: 0;
+}
+
+/* Custom Sound Section */
+.custom-sound-container {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+#custom-sound-name {
+  font-style: italic;
+  color: #495057;
+  flex-grow: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#remove-custom-sound-btn {
+  background-color: var(--danger-btn-bg);
+}
+
+li button svg {
+  stroke: var(--danger-btn-bg);
+  transition: stroke 0.2s ease;
+}
+
+li button:hover {
+  background-color: #f1f3f5;
+}
+
+li button:hover svg {
+  stroke: var(--danger-btn-hover-bg);
+}
+
+.pomodoro-settings-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 5px;
+}
+
+.pomodoro-setting-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* background-color: #f8f9fa; */
+  /* padding: 12px 16px; */
+  /* border-radius: 10px; */
+  /* border: 1px solid #e9ecef; */
+}
+
+.pomodoro-setting-item label {
+  margin-bottom: 0;
+  font-weight: 500;
+  color: #495057;
+}
+
+.pomodoro-setting-item input[type="number"] {
+  width: 85px;
+  padding: 10px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+}

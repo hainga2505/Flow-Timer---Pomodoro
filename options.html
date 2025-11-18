@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Focus Mode Settings</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <h1>Focus Mode Settings</h1>
+  <div class="options-container">
+    <div class="setting">
+      <label>Manage Blocked Sites</label>
+      <div class="site-add-container">
+        <input type="text" id="new-site" placeholder="e.g., abc.com">
+        <button id="add-site">Add Site</button>
+      </div>
+      <ul id="blocked-sites-list"></ul>
+    </div>
+
+    <div class="setting">
+      <label>Whitelist (Sites that are never blocked)</label>
+      <div class="site-add-container">
+        <input type="text" id="whitelist-site-input" placeholder="e.g., docs.google.com">
+        <button id="add-whitelist-site-btn">Add to Whitelist</button>
+      </div>
+      <ul id="whitelisted-sites-list"></ul>
+    </div>
+
+    <div class="setting">
+      <label>Pomodoro Settings</label>
+      <div class="pomodoro-settings-container">
+        <div class="pomodoro-setting-item">
+          <label for="work-duration">Work Duration (minutes)</label>
+          <input type="number" id="work-duration" min="1">
+        </div>
+        <div class="pomodoro-setting-item">
+          <label for="short-break-duration">Short Break (minutes)</label>
+          <input type="number" id="short-break-duration" min="1">
+        </div>
+        <div class="pomodoro-setting-item">
+          <label for="long-break-duration">Long Break (minutes)</label>
+          <input type="number" id="long-break-duration" min="1">
+        </div>
+        <div class="pomodoro-setting-item">
+          <label for="long-break-interval">Pomodoros until Long Break</label>
+          <input type="number" id="long-break-interval" min="1">
+        </div>
+      </div>
+    </div>
+
+    <div class="setting">
+      <label for="sound-select">Notification Sound</label>
+      <div class="sound-select-container">
+        <select id="sound-select"></select>
+        <button id="play-preview-btn" title="Play Preview">▶</button>
+      </div>
+      <p id="save-status">Settings Saved!</p>
+    </div>
+
+    <div class="setting">
+      <label>Custom Notification Sound</label>
+      <p class="setting-description">Upload your own sound file (e.g., .mp3, .wav, .ogg). The file will be stored locally on your browser.</p>
+      <div class="custom-sound-container">
+        <button id="upload-sound-btn">Upload Sound</button>
+        <input type="file" id="sound-file-input" accept="audio/*" class="hidden">
+        <span id="custom-sound-name">No custom sound uploaded.</span>
+        <button id="remove-custom-sound-btn" class="hidden">Remove</button>
+      </div>
+    </div>
+
+  </div>
+  <script src="options.js" defer></script>
+</body>
+</html>
